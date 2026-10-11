@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171936">
+  <title>SubmitTrack — Academic Workspace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="#">
+        <span class="brand-symbol">S</span>
+        <span>Submit<span class="brand-accent">Track</span></span>
+      </a>
+
+      <p class="side-label">WORKSPACE</p>
+      <nav class="navigation">
+        <button class="nav active" data-view="dashboard">
+          <span>▦</span> Dashboard
+        </button>
+        <button class="nav" data-view="subjects">
+          <span>▤</span> My Subjects
+        </button>
+        <button class="nav" data-view="assignments">
+          <span>▧</span> Assignments
+        </button>
+        <button class="nav" data-view="practicals">
+          <span>⌘</span> Practicals
+        </button>
+        <button class="nav" data-view="all">
+          <span>☷</span> All Submissions
+        </button>
+      </nav>
+
+      <div class="sidebar-note">
+        <div class="note-icon">✦</div>
+        <strong>Stay on track!</strong>
+        <p>Small steps every day lead to big achievements.</p>
+      </div>
+
+      <div class="profile">
+        <div class="avatar">S</div>
+        <div class="profile-info">
+          <strong>My Workspace</strong>
+          <span>Personal student account</span>
+        </div>
+        <span class="profile-dot"></span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR ACADEMIC WORKSPACE</p>
+          <h1 id="page-title">Dashboard</h1>
+          <p class="subtitle">Plan your work. Track your progress. Achieve more.</p>
+        </div>
+        <button id="theme-btn" class="theme-btn" aria-label="Toggle dark mode" title="Toggle theme">☾</button>
+      </header>
+
+      <section class="hero">
+        <div class="hero-content">
+          <span class="hero-label">YOUR PERSONAL STUDY SPACE</span>
+          <h2>Make every submission count.</h2>
+          <p>Everything you need to stay organised, all in one place.</p>
+          <button class="hero-btn" id="jump-to-form">＋ Add a submission</button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-circle"></div>
+          <div class="art-card">
+            <span class="art-check">✓</span>
+            <div><strong>Keep going!</strong><small>You're making progress.</small></div>
+          </div>
+          <span class="art-star star-one">✦</span>
+          <span class="art-star star-two">✧</span>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-top"><span>Total submissions</span><span class="stat-icon purple-icon">▤</span></div>
+          <h2 id="total-count">0</h2>
+          <p>Across all subjects</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Completed</span><span class="stat-icon green-icon">✓</span></div>
+          <h2 id="completed-count">0</h2>
+          <p>Tasks finished</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Pending</span><span class="stat-icon orange-icon">◷</span></div>
+          <h2 id="pending-count">0</h2>
+          <p>Tasks remaining</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Overall progress</span><span class="stat-icon blue-icon">↗</span></div>
+          <h2 id="progress-count">0%</h2>
+          <p>Completion rate</p>
+        </article>
+      </section>
+
+      <section class="panel" id="subject-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="section-kicker">YOUR COURSEWORK</span>
+            <h3>Subject-wise progress</h3>
+            <p class="subtitle">See total and completed work for each subject.</p>
+          </div>
+          <button class="primary-btn" id="add-subject-btn">＋ Add subject</button>
+        </div>
+
+        <form id="subject-form" class="inline-form hidden">
+          <label class="sr-only" for="subject-name">Subject name</label>
+          <input id="subject-name" placeholder="Enter subject name" maxlength="60" required>
+          <button class="primary-btn" type="submit" id="save-subject-btn">Save subject</button>
+          <button class="secondary-btn" type="button" id="cancel-subject">Cancel</button>
+        </form>
+
+        <div id="subject-list" class="subject-grid"></div>
+      </section>
+
+      <section class="panel" id="task-form-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="section-kicker">STAY ORGANIZED</span>
+            <h3 id="form-heading">Add a new submission</h3>
+            <p class="subtitle">Create your own assignment, practical, project or study task.</p>
+          </div>
+          <span class="form-badge">✦ Custom tasks</span>
+        </div>
+
+        <form id="task-form" class="form-grid">
+          <label>Task title *
+            <input id="task-title" placeholder="e.g. Assignment 1 — Number Systems" maxlength="100" required>
+          </label>
+          <label>Subject *
+            <select id="task-subject" required>
+              <option value="">Select a subject</option>
+            </select>
+          </label>
+          <label>Submission type *
+            <select id="task-type">
+              <option>Assignment</option>
+              <option>Practical</option>
+              <option>Project</option>
+              <option>Exam Preparation</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Deadline *
+            <input id="task-date" type="date" required>
+          </label>
+          <label class="full-width">Notes <span class="optional">(optional)</span>
+            <textarea id="task-notes" rows="2" maxlength="500" placeholder="Add instructions, practical number or any reminders..."></textarea>
+          </label>
+          <div class="form-actions full-width">
+            <button class="primary-btn" id="save-task-btn" type="submit">＋ Add submission</button>
+            <button class="secondary-btn hidden" id="cancel-edit" type="button">Cancel edit</button>
+          </div>
+        </form>
+        <p id="form-message" class="form-message" aria-live="polite"></p>
+      </section>
+
+      <section class="panel" id="submission-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="section-kicker">YOUR TASK MANAGER</span>
+            <h3 id="list-heading">All submissions</h3>
+            <p class="subtitle">Update status, edit tasks or review deadlines.</p>
+          </div>
+          <input id="search" class="search-input" type="search" placeholder="⌕ Search submissions..." aria-label="Search submissions">
+        </div>
+
+        <div id="active-subject-banner" class="active-subject-banner hidden"></div>
+
+        <div class="filters" id="task-filters">
+          <button class="filter active" data-filter="all">All tasks</button>
+          <button class="filter" data-filter="Assignment">Assignments</button>
+          <button class="filter" data-filter="Practical">Practicals</button>
+          <button class="filter" data-filter="pending">Pending</button>
+          <button class="filter" data-filter="completed">Completed</button>
+        </div>
+
+        <div class="task-list" id="task-list"></div>
+      </section>
+
+      <footer>SubmitTrack <span>·</span> Your work, your way <span>✦</span></footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
